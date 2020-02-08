@@ -24,6 +24,7 @@ $.ajax({
 // Creates a new quiz
 
 const newGame = () => {
+    $('.questions').empty();
     $.ajax({
         url: 'https://opentdb.com/api.php?amount=10&token=' + accessToken
     }).then((data) => {
@@ -35,7 +36,6 @@ const newGame = () => {
         currentGame.forEach((item)=>{
             console.log("is running");
             let $newForm = $('<form>');
-            $('.questions').empty();
             $('.questions').append($newForm);
             let $newQuestion = $('<h2>').html(item.question).appendTo($newForm);
             console.log($newQuestion);
