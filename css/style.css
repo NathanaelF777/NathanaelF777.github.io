@@ -1,3 +1,11 @@
 * {
     background-color: lightblue;
 }
+
+body {
+
+}
+
+.clicked {
+    background-color: red;
+}
