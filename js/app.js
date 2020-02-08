@@ -35,29 +35,40 @@ const newGame = () => {
         currentGame.forEach((item)=>{
             console.log("is running");
             let $newForm = $('<form>');
+            $('.questions').empty();
             $('.questions').append($newForm);
             let $newQuestion = $('<h2>').html(item.question).appendTo($newForm);
             console.log($newQuestion);
-            let $correctAnswer = $(`<input type="radio" name="correct" class="correct">${item.correct_answer}</input>`)
+            let $correctAnswer = $(`<input type="radio" name="question" value="correct" class="correct">${item.correct_answer}</input>`)
             console.log($correctAnswer);
             // $newForm.append($correctAnswer);
             let currentQuestion = [];
             currentQuestion.push($correctAnswer);
             for (x of item.incorrect_answers) {
-                currentQuestion.push(`<input type="radio" name="incorrect" value="${x}">${x}</input>`);
+                let $currentAnswer = $(`<input type="radio" name="question" value="incorrect">${x}</input>`)
+                currentQuestion.push($currentAnswer);
             }
             shuffleArray(currentQuestion);
             console.log(currentQuestion);
             for (x of currentQuestion) {
                 $newForm.append(x);
             }
-            let $submit = $('<input type="submit" value="submit">').appendTo($newForm);
+            let $submit = $('<input type="submit" value="submit" disabled=true>').appendTo($newForm);
+            $newForm.on('input', (event)=> {
+                $submit.attr('disabled', false);
+            })
             $newForm.on('submit', (event) => {
                 event.preventDefault();
+                $submit.attr('disabled', true);
                 // console.log($(event.target));
-                $(event.target).addClass('clicked');
+                // $(event.target).addClass('clicked');
                 $newForm.find(':radio:not(:checked)').attr('disabled', true);
-                // if ($(event.target).name)
+                console.log($newForm.find(':radio:checked').val());
+                if ($newForm.find(':radio:checked').val() === 'correct') {
+                    $(event.currentTarget).addClass('answered-correct');
+                } else {
+                    $(event.currentTarget).addClass('answered-incorrect');
+                }
             })
         })
     }, ()=> {
