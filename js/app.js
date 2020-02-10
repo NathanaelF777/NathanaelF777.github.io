@@ -5,6 +5,9 @@ let currentGame = [];
 let questionNumber = 0;
 let $nextButton;
 let $prevButton;
+let $count;
+let $category;
+let $difficulty;
 
 //Global Functions
 
@@ -38,6 +41,20 @@ const prevWindow = () => {
     $(`.question-${questionNumber}`).show();
 }
 
+const newModal = () => {
+    $('.questions').empty();
+    $('.modal-form-1').trigger("reset");
+    $('.modal-form-2').trigger("reset");
+    $('.modal-form-3').trigger("reset");
+    $('.modal-container').toggle();
+}
+
+const getParam = () => {
+    $count = $('.modal-form-1').find(':radio:checked').val();
+    $category = $('.modal-form-2').find('option:selected').val();
+    $difficulty = $('.modal-form-3').find('option:selected').val();
+}
+
 // Acquire access token and store it under accessToken. Will not work immediately on page load.
 $.ajax({
     url: 'https://opentdb.com/api_token.php?command=request'
@@ -50,10 +67,12 @@ $.ajax({
 // Creates a new quiz
 
 const newGame = () => {
+    getParam();
+    newModal();
     $('.questions').empty(); //Resets div
     initButtons();
     $.ajax({
-        url: 'https://opentdb.com/api.php?amount=10&token=' + accessToken
+        url: 'https://opentdb.com/api.php?amount=' + $count + $category + $difficulty + '&token=' + accessToken
     }).then((data) => {
         currentGame = [];
         for (let i = 0; i < 10; i++) {
@@ -98,7 +117,10 @@ const newGame = () => {
 
 //Run on Ready
 $(()=> {
-$('#new-game').on('click', newGame);
+    $('.close-button').on('click', newModal);
+    $('.modal-container').hide();
+    $('#new-game').on('click', newModal);
+    $('.new-game-submit').on('click', newGame);
 
 
 })
