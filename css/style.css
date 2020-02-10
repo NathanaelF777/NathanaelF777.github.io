@@ -1,9 +1,62 @@
+
 * {
-    background-color: lightblue;
+    /* background-color: whitesmoke; */
+    /* border: 1px solid gold; */
 }
 
 body {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    font-family: sans-serif;
+    margin-top: 0;
+    margin-bottom: 0;
+}
 
+.header {
+    background-image: url(https://previews.123rf.com/images/gustavofrazao/gustavofrazao1610/gustavofrazao161000922/64369428-trivia-written-on-a-wooden-cube-background.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 250px;
+    margin: 0;
+}
+
+.header-title {
+    display: inline-block;
+    /* transform: translate(-5%, 20%); */
+    color: rgb(171, 47, 47);
+    text-shadow: 1px 2px black;
+    font-size: 32px;
+    letter-spacing: 10px;
+    margin-top: 10px;
+    margin-left: 10%;
+}
+
+.navbar, .navbar:link, .navbar:visited {
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(47, 38, 39);
+    list-style: none;
+    text-decoration: none;
+    color: white;
+    margin: 0;
+    padding: 20px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    padding: 20px;
+}
+
+a:hover {
+    background-color: rgb(171, 47, 47);
+}
+
+a:active {
+    background-color: rgb(200, 178, 148);
+    color: rgb(171, 47, 47);
 }
 
 .answered-correct {
