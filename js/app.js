@@ -53,6 +53,7 @@ const getParam = () => {
     $count = $('.modal-form-1').find(':radio:checked').val();
     $category = $('.modal-form-2').find('option:selected').val();
     $difficulty = $('.modal-form-3').find('option:selected').val();
+    console.log('https://opentdb.com/api.php?amount=' + $count + $category + $difficulty + '&token=' + accessToken);
 }
 
 // Acquire access token and store it under accessToken. Will not work immediately on page load.
