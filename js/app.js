@@ -63,11 +63,11 @@ const newGame = () => {
             let $newForm = $('<form>').addClass(`question-${i}`);
             $('.questions').append($newForm);
             let $newQuestion = $('<h2>').html(currentGame[i].question).appendTo($newForm);
-            let $correctAnswer = $(`<input type="radio" name="question" value="correct" class="correct">${currentGame[i].correct_answer}</input>`)
+            let $correctAnswer = $(`<input type="radio" name="question" value="correct" class="correct"> ${currentGame[i].correct_answer}<br>`)
             let currentQuestion = [];
             currentQuestion.push($correctAnswer);
             for (x of currentGame[i].incorrect_answers) {
-                let $currentAnswer = $(`<input type="radio" name="question" value="incorrect">${x}</input>`)
+                let $currentAnswer = $(`<input type="radio" name="question" value="incorrect"> ${x}<br>`)
                 currentQuestion.push($currentAnswer);
             }
             shuffleArray(currentQuestion);
