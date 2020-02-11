@@ -10,6 +10,7 @@ let $category;
 let $difficulty;
 let currentScore = 0;
 let answeredQuestions = 0;
+let storedScores = []
 
 //Global Functions
 
@@ -64,6 +65,22 @@ const endModalReset = () => {
     newModal();
 }
 
+const printHighScores = () => {
+    $('.questions').empty();
+    for (score of storedScores) {
+        let $currentScore = $(`<h2>${score}</h2>`);
+        $('.questions').append($currentScore);
+    }
+    let $resetScores = $('<button>').text('Reset Scores').addClass('resetScoreBtn');
+    $('.questions').append($resetScores)
+    $resetScores.on('click', scoreReset);
+}
+
+const scoreReset = () => {
+    localStorage.setItem("scores", JSON.stringify([]));
+    $('.questions').append($('<p>Your scores have been reset.</p>'));
+}
+
 // Acquire access token and store it under accessToken. Will not work immediately on page load.
 $.ajax({
     url: 'https://opentdb.com/api_token.php?command=request'
@@ -74,7 +91,6 @@ $.ajax({
 });
 
 // Creates a new quiz
-
 const newGame = () => {
     getParam();
     newModal();
@@ -125,8 +141,13 @@ const newGame = () => {
                     $newForm.append(`<p class="answer-response">Correct answer: ${$correct}</p>`);
                 }
                 if (answeredQuestions === currentGame.length) {
-                    $('.end-announcement').append(`<h1>You got ${currentScore} out of ${currentGame.length} correct.</p>`)
+                    $('.end-announcement').append(`<h2>You got ${currentScore} out of ${currentGame.length} correct.</h2>`)
+                    let $thisScore = `Score: ${currentScore} out of ${currentGame.length}`;
                     $('.end-modal-container').toggle();
+                    console.log($thisScore);
+                    storedScores.push($thisScore);
+                    console.log(storedScores);
+                    localStorage.setItem("scores", JSON.stringify(storedScores));
                 }
             })
             $newDiv.hide();
@@ -146,7 +167,16 @@ $(()=> {
     $('.end-modal-container').hide();
     $('#new-game').on('click', newModal);
     $('.new-game-submit').on('click', newGame);
-
+    $('#high-scores').on('click', printHighScores);
+    let retrievedData = localStorage.getItem("scores")
+    let parsedData = JSON.parse(retrievedData);
+    if (parsedData.length === 0) {
+        localStorage.setItem("scores", JSON.stringify([]));
+    } else {
+        storedScores = parsedData;
+    }
+    // localStorage.setItem("scores", JSON.stringify([]))
+    console.log(storedScores);
 
 })
 
