@@ -21,8 +21,8 @@ const shuffleArray = (array) => {
 };
 
 const initButtons = () => {
-    $prevButton = $('<button>').text("<").appendTo('.questions');
-    $nextButton = $('<button>').text(">").appendTo('.questions');
+    $prevButton = $('<button>').text("<").addClass('prev-button').appendTo('.questions');
+    $nextButton = $('<button>').text(">").addClass('next-button').appendTo('.questions');
     $nextButton.on('click', nextWindow);
     $prevButton.on('click', prevWindow);
 }
@@ -82,7 +82,6 @@ const newGame = () => {
     answeredQuestions = 0;
     questionNumber = 0;
     $('.questions').empty(); //Resets div
-    initButtons();
     $.ajax({
         url: 'https://opentdb.com/api.php?amount=' + $count + $category + $difficulty + '&token=' + accessToken
     }).then((data) => {
@@ -91,7 +90,7 @@ const newGame = () => {
             currentGame.push(data.results[i]);
         }
         for (i=0; i < currentGame.length; i++){
-            let $newForm = $('<form>').addClass(`question-${i}`);
+            let $newForm = $('<form>').addClass(`question-${i}`).addClass('question');
             $('.questions').append($newForm);
             let $newQuestion = $('<h2>').html(currentGame[i].question).appendTo($newForm);
             let $correctAnswer = $(`<label><input type="radio" name="question" value="correct" class="correct"/> ${currentGame[i].correct_answer}</label><br>`)
@@ -130,6 +129,7 @@ const newGame = () => {
             })
             $newForm.hide();
         }
+        initButtons();
         $(`.question-${questionNumber}`).show();
     }, ()=> {
         console.log("F");

@@ -71,7 +71,7 @@ a:active {
 }
 
 .modal-dialog {
-    height: 30%;
+    height: 40%;
     width: 40%;
     background-color: white;
     position: fixed;
@@ -83,11 +83,50 @@ a:active {
 .modal-body {
     text-align: center;
     border-bottom: 1px solid grey;
+    padding-bottom: 20px;
 }
 
 .modal-title {
     float: right;
     margin: 10px 20px 0 0;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.new-game-submit {
+    display: flex;
+    margin-top: 5%;
+    padding: 5px 10px;
+
+}
+
+.next-button {
+    float: right;
+    margin-top: 20px;%;
+    padding: 20px;
+    border: none;
+    font-size: 40px;
+}
+
+.prev-button {
+    float: left;
+}
+
+.question {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid grey;
+    border-radius: 2%;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    display: flex;
+    flex-direction: column;
 }
 
 .answered-correct {
