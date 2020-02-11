@@ -58,6 +58,12 @@ const getParam = () => {
     console.log('https://opentdb.com/api.php?amount=' + $count + $category + $difficulty + '&token=' + accessToken);
 }
 
+const endModalReset = () => {
+    $('.end-announcement').empty();
+    $('.end-modal-container').hide();
+    newModal();
+}
+
 // Acquire access token and store it under accessToken. Will not work immediately on page load.
 $.ajax({
     url: 'https://opentdb.com/api_token.php?command=request'
@@ -74,6 +80,7 @@ const newGame = () => {
     newModal();
     currentScore = 0;
     answeredQuestions = 0;
+    questionNumber = 0;
     $('.questions').empty(); //Resets div
     initButtons();
     $.ajax({
@@ -117,7 +124,8 @@ const newGame = () => {
                     $newForm.append(`<p>Correct answer: ${$correct}</p>`);
                 }
                 if (answeredQuestions === currentGame.length) {
-                    $('body').append(`<h1>You got ${currentScore} out of ${currentGame.length} correct.</p>`)
+                    $('.end-announcement').append(`<h1>You got ${currentScore} out of ${currentGame.length} correct.</p>`)
+                    $('.end-modal-container').toggle();
                 }
             })
             $newForm.hide();
@@ -131,7 +139,9 @@ const newGame = () => {
 //Run on Ready
 $(()=> {
     $('.close-button').on('click', newModal);
+    $('.reset-button').on('click', endModalReset);
     $('.modal-container').hide();
+    $('.end-modal-container').hide();
     $('#new-game').on('click', newModal);
     $('.new-game-submit').on('click', newGame);
 
