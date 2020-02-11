@@ -59,6 +59,37 @@ a:active {
     color: rgb(171, 47, 47);
 }
 
+.modal-fade {
+    z-index: 9999;
+    position: fixed;
+    display: block;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.3);
+}
+
+.modal-dialog {
+    height: 30%;
+    width: 40%;
+    background-color: white;
+    position: fixed;
+    top: 30%;
+    left: 30%;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.modal-body {
+    text-align: center;
+    border-bottom: 1px solid grey;
+}
+
+.modal-title {
+    float: right;
+    margin: 10px 20px 0 0;
+}
+
 .answered-correct {
     background-color: green;
 }
