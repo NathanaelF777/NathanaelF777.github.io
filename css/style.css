@@ -91,9 +91,9 @@ a:active {
 }
 
 .answered-correct {
-    background-color: green;
+    color: green;
 }
 
 .answered-incorrect {
-    background-color: red;
+    color: red;
 }

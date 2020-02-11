@@ -8,6 +8,7 @@ let $prevButton;
 let $count;
 let $category;
 let $difficulty;
+let currentScore = 0;
 
 //Global Functions
 
@@ -70,6 +71,7 @@ $.ajax({
 const newGame = () => {
     getParam();
     newModal();
+    currentScore = 0;
     $('.questions').empty(); //Resets div
     initButtons();
     $.ajax({
@@ -83,11 +85,11 @@ const newGame = () => {
             let $newForm = $('<form>').addClass(`question-${i}`);
             $('.questions').append($newForm);
             let $newQuestion = $('<h2>').html(currentGame[i].question).appendTo($newForm);
-            let $correctAnswer = $(`<input type="radio" name="question" value="correct" class="correct"> ${currentGame[i].correct_answer}<br>`)
+            let $correctAnswer = $(`<label><input type="radio" name="question" value="correct" class="correct"/> ${currentGame[i].correct_answer}</label><br>`)
             let currentQuestion = [];
             currentQuestion.push($correctAnswer);
             for (x of currentGame[i].incorrect_answers) {
-                let $currentAnswer = $(`<input type="radio" name="question" value="incorrect"> ${x}<br>`)
+                let $currentAnswer = $(`<label><input type="radio" name="question" value="incorrect" /> ${x}</label><br>`)
                 currentQuestion.push($currentAnswer);
             }
             shuffleArray(currentQuestion);
@@ -104,8 +106,12 @@ const newGame = () => {
                 $newForm.find(':radio:not(:checked)').attr('disabled', true);
                 if ($newForm.find(':radio:checked').val() === 'correct') {
                     $(event.currentTarget).addClass('answered-correct');
+                    currentScore++
+                    $newForm.append('<p>Correct!</p>');
                 } else {
                     $(event.currentTarget).addClass('answered-incorrect');
+                    let $correct = $newForm.find('.correct').parent().text();
+                    $newForm.append(`<p>Correct answer: ${$correct}</p>`);
                 }
             })
             $newForm.hide();
