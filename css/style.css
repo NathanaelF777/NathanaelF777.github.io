@@ -108,25 +108,49 @@ a:active {
 
 .next-button {
     float: right;
-    margin-top: 20px;%;
-    padding: 20px;
+    margin-top: 20px;
+    padding: 10px 20px;
     border: none;
     font-size: 40px;
 }
 
 .prev-button {
     float: left;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    font-size: 40px;
 }
 
-.question {
+.questions {
     margin-top: 20px;
     width: 100%;
     text-align: center;
     border: 1px solid grey;
     border-radius: 2%;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.question {
     display: flex;
+    text-align: left;
     flex-direction: column;
+}
+
+.radio {
+    margin-left: 10px;
+}
+
+.question-submit {
+    font-size: 40px;
+    margin: 10px;
+    padding: 100px;
+    max-width: 20%;
+    align-self: center;
+}
+
+.answer-response {
+    text-align: center;
 }
 
 .answered-correct {

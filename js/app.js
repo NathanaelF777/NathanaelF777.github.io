@@ -90,21 +90,23 @@ const newGame = () => {
             currentGame.push(data.results[i]);
         }
         for (i=0; i < currentGame.length; i++){
-            let $newForm = $('<form>').addClass(`question-${i}`).addClass('question');
-            $('.questions').append($newForm);
-            let $newQuestion = $('<h2>').html(currentGame[i].question).appendTo($newForm);
-            let $correctAnswer = $(`<label><input type="radio" name="question" value="correct" class="correct"/> ${currentGame[i].correct_answer}</label><br>`)
+            let $newForm = $('<form>').addClass('question');
+            let $newDiv = $('<div>').addClass('question-container').addClass(`question-${i}`);
+            $('.questions').append($newDiv);
+            let $newQuestion = $('<h2>').html(currentGame[i].question).appendTo($newDiv);
+            $($newDiv).append($newForm);
+            let $correctAnswer = $(`<label><input type="radio" name="question" value="correct" class="radio correct"/> ${currentGame[i].correct_answer}</label><br>`)
             let currentQuestion = [];
             currentQuestion.push($correctAnswer);
             for (x of currentGame[i].incorrect_answers) {
-                let $currentAnswer = $(`<label><input type="radio" name="question" value="incorrect" /> ${x}</label><br>`)
+                let $currentAnswer = $(`<label><input type="radio" name="question" value="incorrect" class="radio" /> ${x}</label><br>`)
                 currentQuestion.push($currentAnswer);
             }
             shuffleArray(currentQuestion);
             for (x of currentQuestion) {
                 $newForm.append(x);
             }
-            let $submit = $('<input type="submit" value="submit" disabled=true>').appendTo($newForm);
+            let $submit = $('<input type="submit" value="submit" disabled=true class="question-submit">').appendTo($newForm);
             $newForm.on('input', (event)=> {
                 $submit.attr('disabled', false);
             })
@@ -116,18 +118,18 @@ const newGame = () => {
                 if ($newForm.find(':radio:checked').val() === 'correct') {
                     $(event.currentTarget).addClass('answered-correct');
                     currentScore++
-                    $newForm.append('<p>Correct!</p>');
+                    $newForm.append('<p class="answer-response">Correct!</p>');
                 } else {
                     $(event.currentTarget).addClass('answered-incorrect');
                     let $correct = $newForm.find('.correct').parent().text();
-                    $newForm.append(`<p>Correct answer: ${$correct}</p>`);
+                    $newForm.append(`<p class="answer-response">Correct answer: ${$correct}</p>`);
                 }
                 if (answeredQuestions === currentGame.length) {
                     $('.end-announcement').append(`<h1>You got ${currentScore} out of ${currentGame.length} correct.</p>`)
                     $('.end-modal-container').toggle();
                 }
             })
-            $newForm.hide();
+            $newDiv.hide();
         }
         initButtons();
         $(`.question-${questionNumber}`).show();
