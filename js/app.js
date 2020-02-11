@@ -9,6 +9,7 @@ let $count;
 let $category;
 let $difficulty;
 let currentScore = 0;
+let answeredQuestions = 0;
 
 //Global Functions
 
@@ -72,6 +73,7 @@ const newGame = () => {
     getParam();
     newModal();
     currentScore = 0;
+    answeredQuestions = 0;
     $('.questions').empty(); //Resets div
     initButtons();
     $.ajax({
@@ -101,6 +103,7 @@ const newGame = () => {
                 $submit.attr('disabled', false);
             })
             $newForm.on('submit', (event) => {
+                answeredQuestions++
                 event.preventDefault();
                 $submit.attr('disabled', true);
                 $newForm.find(':radio:not(:checked)').attr('disabled', true);
@@ -112,6 +115,9 @@ const newGame = () => {
                     $(event.currentTarget).addClass('answered-incorrect');
                     let $correct = $newForm.find('.correct').parent().text();
                     $newForm.append(`<p>Correct answer: ${$correct}</p>`);
+                }
+                if (answeredQuestions === currentGame.length) {
+                    $('body').append(`<h1>You got ${currentScore} out of ${currentGame.length} correct.</p>`)
                 }
             })
             $newForm.hide();
