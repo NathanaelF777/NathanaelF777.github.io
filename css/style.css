@@ -148,11 +148,11 @@ a:active {
 }
 
 .question-submit {
-    font-size: 40px;
+    /* font-size: 40px;
     margin: 10px;
     padding: 100px;
     max-width: 20%;
-    align-self: center;
+    align-self: center; */
 }
 
 .end-announcement {
