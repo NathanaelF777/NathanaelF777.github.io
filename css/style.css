@@ -1,0 +1,237 @@
+
+* {
+    /* background-color: whitesmoke; */
+    /* border: 1px solid gold; */
+}
+
+body {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    font-family: sans-serif;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+p {
+    margin: 10px;
+}
+
+.header {
+    background-image: url(https://previews.123rf.com/images/gustavofrazao/gustavofrazao1610/gustavofrazao161000922/64369428-trivia-written-on-a-wooden-cube-background.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 250px;
+    margin: 0;
+}
+
+.header-title {
+    display: inline-block;
+    /* transform: translate(-5%, 20%); */
+    color: rgb(171, 47, 47);
+    text-shadow: 1px 2px black;
+    font-size: 32px;
+    letter-spacing: 10px;
+    margin-top: 10px;
+    margin-left: 10%;
+}
+
+.navbar, .navbar:link, .navbar:visited {
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(47, 38, 39);
+    list-style: none;
+    text-decoration: none;
+    color: white;
+    margin: 0;
+    padding: 20px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    padding: 20px;
+}
+
+a:hover {
+    background-color: rgb(171, 47, 47);
+}
+
+a:active {
+    background-color: rgb(200, 178, 148);
+    color: rgb(171, 47, 47);
+}
+
+.modal-fade {
+    z-index: 9999;
+    position: fixed;
+    display: block;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.3);
+}
+
+.modal-dialog {
+    height: 40%;
+    width: 40%;
+    background-color: white;
+    position: fixed;
+    top: 30%;
+    left: 30%;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.modal-body {
+    text-align: center;
+    border-bottom: 1px solid grey;
+    padding-bottom: 20px;
+}
+
+.modal-title {
+    float: right;
+    margin: 10px 20px 0 0;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.new-game-submit {
+    display: flex;
+    margin-top: 5%;
+    padding: 5px 10px;
+
+}
+
+.next-button {
+    float: right;
+    margin-top: 90px;
+    padding: 10px 20px;
+    border: none;
+    font-size: 40px;
+    background-color: rgba(0,0,0,0);
+}
+
+.prev-button {
+    float: left;
+    margin-top: 90px;
+    padding: 10px 20px;
+    border: none;
+    font-size: 40px;
+    background-color: rgba(0,0,0,0);
+}
+
+.questions {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid grey;
+    border-radius: 2%;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.question {
+    display: flex;
+    text-align: left;
+    flex-direction: column;
+}
+
+.radio {
+    margin-left: 10px;
+}
+
+.question-submit {
+    font-size: 40px;
+    margin: 10px;
+    padding: 100px;
+    max-width: 20%;
+    align-self: center;
+}
+
+.end-announcement {
+    padding: 10px;
+    text-align: center;
+}
+
+.end-modal-dialog {
+    height: 40%;
+    width: 40%;
+    background-color: white;
+    position: fixed;
+    top: 30%;
+    left: 30%;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    text-align: right;
+}
+
+.reset-button {
+    padding: 5px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.answer-response {
+    text-align: center;
+}
+
+.answered-correct {
+    color: green;
+}
+
+.answered-incorrect {
+    color: red;
+}
+
+.about-link {
+    display: block;
+    background-color: rgb(47, 38, 39);
+    margin: 20px auto 20px auto;
+    max-width: 300px;
+}
+
+.resetScoreBtn {
+    margin: 20px;
+    padding: 10px 20px;
+    font-size: 24px;
+    background-color: rgb(47, 38, 39);
+    color: white;
+}
+
+.resetScoreBtn:hover {
+    background-color: rgb(171, 47, 47);
+}
+
+.resetScoreBtn:active {
+    background-color: rgb(200, 178, 148);
+    color: rgb(171, 47, 47);
+}
+
+.question-head {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#new-game {
+    margin: 20px;
+    padding: 10px 20px;
+    font-size: 24px;
+    background-color: rgb(47, 38, 39);
+    color: white;
+}
+
+#new-game:hover {
+    background-color: rgb(171, 47, 47);
+}
+
+#new-game:active {
+    background-color: rgb(200, 178, 148);
+    color: rgb(171, 47, 47);
+}

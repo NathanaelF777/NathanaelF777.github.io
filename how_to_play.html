@@ -1,0 +1,35 @@
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/style.css" type="text/css">
+        <title>Waverider Trivia: Based on Open Trivia DB API</title>
+    </head>
+    <body>
+        <nav>
+            <div class="header">
+                <h1 class="header-title">WAVERIDER</h1>
+            </div>
+            <ul class="navbar">
+                <li><a href="index.html">Take a Quiz</a></li>
+                <li><a href="how_to_play.html">How it Works</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="#" id="high-scores">High Scores</a></li>
+            </ul>
+        </nav>
+        <div class="questions">
+            <h2>How it Works:</h2>
+            <p>Waverider Trivia uses Open Trivia Database (link in about) to generate customizable trivia quizes using questions pulled from the database.</p>
+            <h2>How to Play:</h2>
+            <p>Simply click Take a Quiz from the nav bar. From there click New Game and select the number of questions from the popup menu. Additionally you can select the category and difficulty of the questions. Once all of the questions are answered you will see a modal that will give you your overall score and a prompt to generate a new quiz.</p>
+            <h2>How are my scores saved?</h2>
+            <p>Waverider Trivia stores some data in your browser's memory. This allows high scores to be saved across sessions. For this feature to function properly, please ensure that cookies are enabled on your browser and adblock is disabled for Waverider Trivia.</p>
+            <h2>My quiz didn't populate:</h2>
+            <p>If this occurs, it is because there are not enough quiz questions that meet your specific criteria, thus causing the API to return an error. I apologize for this and a more thoughtful solution would be implemented if this were a commercial platform. However, given the time constraints of this project I unfortunately must just ask that you try a quiz qith different parameters or less questions.</p>
+        </div>
+    </body>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+    <script src="js/app.js" charset="utf-8"></script>
+</html>
