@@ -151,6 +151,7 @@ a:active {
     /* font-size: 40px; */
     margin: 10px;
     /* padding: 100px; */
+    width: 300px;
     max-width: 20%;
     align-self: center;
 }
