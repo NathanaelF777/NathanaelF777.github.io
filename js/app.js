@@ -128,7 +128,7 @@ const newGame = () => {
             for (x of currentQuestion) {
                 $newForm.append(x);
             }
-            let $submit = $('<span><input type="submit" value="submit" disabled=true  class="resetScoreBtn"></span>').appendTo($newForm);
+            let $submit = $('<input type="submit" value="submit" disabled=true  class="resetScoreBtn">').appendTo($newForm);
             $newForm.on('input', (event)=> {
                 $submit.attr('disabled', false);
             })
