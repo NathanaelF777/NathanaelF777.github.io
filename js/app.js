@@ -11,6 +11,8 @@ let $difficulty;
 let currentScore = 0;
 let answeredQuestions = 0;
 let storedScores = []
+let $difficultyName;
+let $categoryName;
 
 //Global Functions
 
@@ -55,7 +57,9 @@ const newModal = () => {
 const getParam = () => {
     $count = $('.modal-form-1').find(':radio:checked').val();
     $category = $('.modal-form-2').find('option:selected').val();
+    $categoryName = $('.modal-form-2').find('option:selected').text();
     $difficulty = $('.modal-form-3').find('option:selected').val();
+    $difficultyName = $('.modal-form-3').find('option:selected').text();
     console.log('https://opentdb.com/api.php?amount=' + $count + $category + $difficulty + '&token=' + accessToken);
 }
 
@@ -94,10 +98,12 @@ $.ajax({
 const newGame = () => {
     getParam();
     newModal();
+    initButtons();
     currentScore = 0;
     answeredQuestions = 0;
     questionNumber = 0;
     $('.questions').empty(); //Resets div
+    initButtons();
     $.ajax({
         url: 'https://opentdb.com/api.php?amount=' + $count + $category + $difficulty + '&token=' + accessToken
     }).then((data) => {
@@ -109,7 +115,7 @@ const newGame = () => {
             let $newForm = $('<form>').addClass('question');
             let $newDiv = $('<div>').addClass('question-container').addClass(`question-${i}`);
             $('.questions').append($newDiv);
-            let $newQuestion = $('<h2>').html(currentGame[i].question).appendTo($newDiv);
+            let $newQuestion = $('<h2>').html(`Question #${i + 1}: ${currentGame[i].question}`).addClass('question-head').appendTo($newDiv);
             $($newDiv).append($newForm);
             let $correctAnswer = $(`<label><input type="radio" name="question" value="correct" class="radio correct"/> ${currentGame[i].correct_answer}</label><br>`)
             let currentQuestion = [];
@@ -142,7 +148,7 @@ const newGame = () => {
                 }
                 if (answeredQuestions === currentGame.length) {
                     $('.end-announcement').append(`<h2>You got ${currentScore} out of ${currentGame.length} correct.</h2>`)
-                    let $thisScore = `Score: ${currentScore} out of ${currentGame.length}`;
+                    let $thisScore = `Score: ${currentScore} out of ${currentGame.length}.<br> Difficulty: ${$difficultyName}.<br> Category: ${$categoryName}.<br>`;
                     $('.end-modal-container').toggle();
                     console.log($thisScore);
                     storedScores.push($thisScore);
@@ -152,7 +158,7 @@ const newGame = () => {
             })
             $newDiv.hide();
         }
-        initButtons();
+        // initButtons();
         $(`.question-${questionNumber}`).show();
     }, ()=> {
         console.log("F");

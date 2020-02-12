@@ -112,7 +112,7 @@ a:active {
 
 .next-button {
     float: right;
-    margin-top: 20px;
+    margin-top: 90px;
     padding: 10px 20px;
     border: none;
     font-size: 40px;
@@ -121,7 +121,7 @@ a:active {
 
 .prev-button {
     float: left;
-    margin-top: 10px;
+    margin-top: 90px;
     padding: 10px 20px;
     border: none;
     font-size: 40px;
@@ -212,6 +212,11 @@ a:active {
 .resetScoreBtn:active {
     background-color: rgb(200, 178, 148);
     color: rgb(171, 47, 47);
+}
+
+.question-head {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 #new-game {
