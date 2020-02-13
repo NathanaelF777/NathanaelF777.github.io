@@ -29,7 +29,6 @@ const initButtons = () => {
     $nextButton.on('click', nextWindow);
     $prevButton.on('click', prevWindow);
 }
-
 const nextWindow = () => {
     $(`.question-${questionNumber}`).hide();
     if (questionNumber < currentGame.length - 1) {
@@ -60,7 +59,7 @@ const getParam = () => {
     $categoryName = $('.modal-form-2').find('option:selected').text();
     $difficulty = $('.modal-form-3').find('option:selected').val();
     $difficultyName = $('.modal-form-3').find('option:selected').text();
-    console.log('https://opentdb.com/api.php?amount=' + $count + $category + $difficulty + '&token=' + accessToken);
+    // console.log('https://opentdb.com/api.php?amount=' + $count + $category + $difficulty + '&token=' + accessToken);
 }
 
 const endModalReset = () => {
@@ -158,7 +157,6 @@ const newGame = () => {
             })
             $newDiv.hide();
         }
-        // initButtons();
         $(`.question-${questionNumber}`).show();
     }, ()=> {
         console.log("F");
@@ -181,96 +179,5 @@ $(()=> {
     } else {
         storedScores = parsedData;
     }
-    // localStorage.setItem("scores", JSON.stringify([]))
-    console.log(storedScores);
 
 })
-
-// old Code
-// const newGame = () => {
-//     $('.questions').empty(); //Resets div
-//     $.ajax({
-//         url: 'https://opentdb.com/api.php?amount=10&token=' + accessToken
-//     }).then((data) => {
-//         currentGame = [];
-//         for (let i = 0; i < 10; i++) {
-//             currentGame.push(data.results[i]);
-//         }
-//         currentGame.forEach((item)=>{
-//             let $newForm = $('<form>');
-//             $('.questions').append($newForm);
-//             let $newQuestion = $('<h2>').html(item.question).appendTo($newForm);
-//             let $correctAnswer = $(`<input type="radio" name="question" value="correct" class="correct">${item.correct_answer}</input>`)
-//             let currentQuestion = [];
-//             currentQuestion.push($correctAnswer);
-//             for (x of item.incorrect_answers) {
-//                 let $currentAnswer = $(`<input type="radio" name="question" value="incorrect">${x}</input>`)
-//                 currentQuestion.push($currentAnswer);
-//             }
-//             shuffleArray(currentQuestion);
-//             for (x of currentQuestion) {
-//                 $newForm.append(x);
-//             }
-//             let $submit = $('<input type="submit" value="submit" disabled=true>').appendTo($newForm);
-//             $newForm.on('input', (event)=> {
-//                 $submit.attr('disabled', false);
-//             })
-//             $newForm.on('submit', (event) => {
-//                 event.preventDefault();
-//                 $submit.attr('disabled', true);
-//                 $newForm.find(':radio:not(:checked)').attr('disabled', true);
-//                 if ($newForm.find(':radio:checked').val() === 'correct') {
-//                     $(event.currentTarget).addClass('answered-correct');
-//                 } else {
-//                     $(event.currentTarget).addClass('answered-incorrect');
-//                 }
-//             })
-//         })
-//     }, ()=> {
-//         console.log("F");
-//     })
-// }
-
-
-// attempt 2 - delete and recreate divs
-// const newGame = () => {
-//     $('.questions').empty();
-//     $.ajax({
-//         url: 'https://opentdb.com/api.php?amount=10&token=' + accessToken
-//     }).then((data) => {
-//         currentGame = [];
-//         for (let i = 0; i < 10; i++) {
-//             currentGame.push(data.results[i]);
-//         }
-//         let $newForm = $('<form>');
-//         $('.questions').append($newForm);
-//         let $newQuestion = $('<h2>').html(currentGame[questionNumber].question).appendTo($newForm);
-//         let $correctAnswer = $(`<input type="radio" name="question" value="correct" class="correct">${currentGame[questionNumber].correct_answer}</input>`)
-//         let currentQuestion = [];
-//         currentQuestion.push($correctAnswer);
-//         for (x of currentGame[questionNumber].incorrect_answers) {
-//             let $currentAnswer = $(`<input type="radio" name="question" value="incorrect">${x}</input>`)
-//             currentQuestion.push($currentAnswer);
-//             }
-//         shuffleArray(currentQuestion);
-//         for (x of currentQuestion) {
-//             $newForm.append(x);
-//         }
-//         let $submit = $('<input type="submit" value="submit" disabled=true>').appendTo($newForm);
-//         $newForm.on('input', (event)=> {
-//             $submit.attr('disabled', false);
-//         })
-//         $newForm.on('submit', (event) => {
-//             event.preventDefault();
-//             $submit.attr('disabled', true);
-//             $newForm.find(':radio:not(:checked)').attr('disabled', true);
-//             if ($newForm.find(':radio:checked').val() === 'correct') {
-//                 $(event.currentTarget).addClass('answered-correct');
-//             } else {
-//                 $(event.currentTarget).addClass('answered-incorrect');
-//             }
-//         })
-//     }, ()=> {
-//         console.log("F");
-//     })
-// }
